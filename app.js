@@ -2,13 +2,15 @@ import express from 'express';
 import cors from 'cors'
 import bodyParser from 'body-parser';
 import database from './src/config/database.js'
+import UserRouter from './src/routes/user.js';
+
 let app = express()
 
 app.use(bodyParser.json())
 app.use(cors())
 
-
-
+//Routers are define here
+app.use("/api/auth",UserRouter)
 
 
 

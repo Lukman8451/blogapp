@@ -1,9 +1,7 @@
 import database from "../config/database.js";
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes,Sequelize } from "sequelize";
 
-let sequelize = new Sequelize()
-
-const User = sequelize.define("users",{
+const User = database.define("users",{
   id:{
     type:DataTypes.UUID,
     primaryKey:true,
@@ -55,12 +53,12 @@ const User = sequelize.define("users",{
   createdAt:{
     type:DataTypes.DATE,
     allowNull:false,
-    defaultValue:Sequelize.fn("CURRENT_TIMESTAMP")
+    defaultValue:Sequelize.fn("now")
   },
   updatedAt:{
     type:DataTypes.DATE,
     allowNull:false,
-    defaultValue:Sequelize.fn("CURRENT_TIMESTAMP") 
+    defaultValue:Sequelize.fn("now") 
   }
 });
 
