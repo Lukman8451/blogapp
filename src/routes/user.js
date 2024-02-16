@@ -11,6 +11,7 @@ UserRouter.post("/createUser",userController.CreateUser);
 UserRouter.get("/getAllUsers",userController.GetAllUsers)
 UserRouter.get("/getUserById/:id",userController.GetUserById)
 UserRouter.delete("/deleteUserById/:id",userController.DeleteUser)
+UserRouter.put("/updateUser/:id",userController.UpdateUser)
 // UserRouter.delete()
 
 export default UserRouter
