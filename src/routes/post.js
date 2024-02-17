@@ -14,5 +14,4 @@ PostRouter.get("/getpostbyid/:id",postController.GetPostById)
 //PostRouter.put("/updateUser/:id",postController.UpdateUser)
 // UserRouter.delete()
 
-
 export default PostRouter
