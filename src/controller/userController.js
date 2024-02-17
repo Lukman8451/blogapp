@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+//import User from "../routes/user.js";
 
 
 class UserController{
@@ -28,6 +29,22 @@ class UserController{
     }
 
     UpdateUser = async (req,res) =>{
+        let id = req.params.id
+        let userData = req.body
+        if(  userData == null || userData == undefined && id == null || id == undefined){
+            res.status(400).json({erorr:"please provide id and data"})
+        }else{
+            try {
+                let response = await User.update(userData,{where:{id:id}});
+                if(response > 0){
+                    res.status(200).json({data:response,message:"Updated Successfully"})
+                }else{
+                    res.status(400).json({message:"No Data exists",data:response})    
+                }
+            } catch (error) {
+                res.status(400).json({error:error.message})
+            }
+        }
         
     }
 
@@ -84,26 +101,7 @@ class UserController{
         
     }
 
-    UpdateUser = async (req,res) =>{
-        let userData = req.body
-        let id = req.params.id
-        if(userData == null || userData == undefined  && id == null || id == undefined){
-            res.status(400).json({error:"user data is required"});
-        }else{
-            try {
-                let response = await User.update(userData,{where:{id:id}})
-                if(response){
-                    res.status(201).json({message:"User updated Successfully",data:response})
-                }else{
-                    res.status(201).json({error:"Something went wrong please try again"})
-                }
-            } catch (error) {
-                console.log(error)
-                res.status(200).json({error:error.message});
-            }
-        } 
-    }
-
+   
 }
 
 export default UserController
