@@ -10,8 +10,8 @@ PostRouter.post("/createpost",postController.CreatePost);
 // UserRouter.put()
 PostRouter.get("/getallpost",postController.GetAllPost)
 PostRouter.get("/getpostbyid/:id",postController.GetPostById)
-//PostRouter.delete("/deleteUserById/:id",postController.DeleteUser)
-//PostRouter.put("/updateUser/:id",postController.UpdateUser)
+PostRouter.delete("/deletepostbyid/:id",postController.DeletePost)
+PostRouter.put("/updatepost/:id",postController.UpdatePost)
 // UserRouter.delete()
 
 export default PostRouter
