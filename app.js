@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import database from './src/config/database.js'
 import UserRouter from './src/routes/user.js';
 import PostRouter from './src/routes/post.js';
+import CommentRouter from './src/routes/comment.js';
 
 let app = express()
 
@@ -13,6 +14,7 @@ app.use(cors())
 //Routers are define here
 app.use("/api/auth",UserRouter)
 app.use("/api/auth",PostRouter)
+app.use("/api/auth",CommentRouter)
 
 
 
