@@ -12,6 +12,6 @@ PostRouter.get("/getallpost",postController.GetAllPost)
 PostRouter.get("/getpostbyid/:id",postController.GetPostById)
 PostRouter.delete("/deletepostbyid/:id",postController.DeletePost)
 PostRouter.put("/updatepost/:id",postController.UpdatePost)
-// UserRouter.delete()
+PostRouter.delete("/deleteallpost", postController.BulkDeletePost)
 
 export default PostRouter

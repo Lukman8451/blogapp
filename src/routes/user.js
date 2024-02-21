@@ -12,6 +12,6 @@ UserRouter.get("/getAllUsers",userController.GetAllUsers)
 UserRouter.get("/getUserById/:id",userController.GetUserById)
 UserRouter.delete("/deleteUserById/:id",userController.DeleteUser)
 UserRouter.put("/updateUser/:id",userController.UpdateUser)
-// UserRouter.delete()
+UserRouter.delete("/deleteallusers", userController.BulkDeleteUsers)
 
 export default UserRouter

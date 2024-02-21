@@ -98,6 +98,19 @@ class UserController{
     }
 
     BulkDeleteUsers = async (req,res) =>{
+        try {
+            let response = await User.truncate();
+            if(response==0)
+            {
+                res.status(200).json({data:response,message: "All user Deleted Sucessfully"});
+            }
+            else{
+                res.status(200).json({message:"No data exists", data:response})
+            }
+        } catch (error) {
+            res.status(400).json({error:error.message})
+            
+        }
         
     }
 

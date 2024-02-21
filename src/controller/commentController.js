@@ -96,6 +96,22 @@ class CommentController{
         }
     }
 
+    BulkDeleteComment = async (req,res) =>{
+        try {
+            let response = await comment.truncate();
+            if(response==0)
+            {
+                res.status(200).json({data:response,message: "All Comment Deleted Sucessfully"});
+            }
+            else{
+                res.status(200).json({message:"No data exists", data:response})
+            }
+        } catch (error) {
+            res.status(400).json({error:error.message})
+            
+        }
+        
+    }
 }
 
 
