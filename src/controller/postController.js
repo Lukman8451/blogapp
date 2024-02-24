@@ -1,4 +1,6 @@
+import comments from "../models/comment.js";
 import Post from "../models/post.js";
+import User from "../models/user.js";
 //import Post from "../routes/post.js"
 
 class PostController{
@@ -28,8 +30,34 @@ class PostController{
     }
 
     GetAllPost = async (req,res) =>{
+        let page = req.query?.page
+        let limit = req.query?.limit
+        
+        if((page == null || page == undefined)&& (limit == null || limit == undefined )){
+            page = 1
+            limit = 10
+        }else if(page == undefined || limit == undefined){
+            page = 1
+            limit = 10
+        }
         try {
-            let response = await Post.findAndCountAll();
+            let offset = (page - 1) * limit
+            let attributes = ["createdAt","updatedAt"]
+            let response = await Post.findAndCountAll({
+                include:[
+                    {
+                        model:User,
+                        attributes:{exclude:attributes}
+                    },
+                    {
+                        model:comments
+                    }
+                ],
+                attributes:{exclude:["userId","createdAt"]},
+                offset:offset,
+                limit:limit,
+                order:[["updatedAt","DESC"]]
+            });
             if(response.count > 0){
                 res.status(200).json({data:response})
             }else{
@@ -46,7 +74,7 @@ class PostController{
             res.status(400).json({erorr:"please provide id"})
         }else{
             try {
-                let response = await Post.findByPk(id);
+                let response = await Post.findByPk(id,{include:User,attributes:{exclude:["userId","createdAt","updatedAt"]}});
                 if(response == null){
                     res.status(200).json({message:"No Post exists",data:response})
                 }else{
@@ -95,6 +123,7 @@ class PostController{
             }
         }
     }
+    
     BulkDeletePost = async (req,res) =>{
         try {
             let response = await Post.truncate();

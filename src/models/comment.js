@@ -2,17 +2,12 @@ import database from "../config/database.js";
 import { DataTypes,Sequelize } from "sequelize";
 
 
-const comment = database.define("comment",{
+const comment = database.define("comments",{
   comment_id:{
     type:DataTypes.UUID,
     primaryKey:true,
     allowNull:false,
     defaultValue:DataTypes.UUIDV4()
-  },
-  post_id:{
-    type:DataTypes.STRING,
-    allowNull:false,
-    
   },
   user_id:{
     type:DataTypes.STRING,

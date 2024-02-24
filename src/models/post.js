@@ -1,7 +1,7 @@
 import database from "../config/database.js";
 import { DataTypes,Sequelize } from "sequelize";
 
-const Post = database.define("Post",{
+const Post = database.define("posts",{
   id:{
     type:DataTypes.UUID,
     primaryKey:true,

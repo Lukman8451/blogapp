@@ -5,6 +5,8 @@ import database from './src/config/database.js'
 import UserRouter from './src/routes/user.js';
 import PostRouter from './src/routes/post.js';
 import CommentRouter from './src/routes/comment.js';
+import setAssociations from './src/models/associations.js';
+setAssociations()
 
 let app = express()
 
@@ -20,6 +22,7 @@ app.use("/api/auth",CommentRouter)
 
 database.sync({alter:true}).then(()=>{
     console.log("Database Connected Successfully")
+    
 }).catch((error)=>{
     console.log(`this is the error ${error}`)
 })
