@@ -1,4 +1,6 @@
+import { Op } from "sequelize";
 import User from "../models/user.js";
+import Post from "../models/post.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 class UserController{
@@ -89,12 +91,42 @@ class UserController{
     }
 
     GetAllUsers = async (req,res) =>{
+        let page = req.query?.page
+        let limit = req.query?.limit
+        let keyword = req.query?.keyword
+        if((page == null || page == undefined)&& (limit == null || limit == undefined )){
+            page = 1
+            limit = 10
+        }else if(page == undefined || limit == undefined){
+            page = 1
+            limit = 10
+        }
         try {
-            let response = await User.findAndCountAll();
+            let offset = (page - 1) * limit
+
+            let attributes = ["createdAt","updatedAt"]
+            let response = await User.findAndCountAll({
+                where:{
+                    [Op.or]:{
+                        name:{
+                            [Op.iLike]:`%${keyword}%`
+                        },
+                        email:{
+                            [Op.iLike]:`%${keyword}%`
+                        }
+                       
+                    }
+                },
+              
+                attributes:{exclude:["userId","createdAt"]},
+                offset:offset,
+                limit:limit,
+                order:[["updatedAt","DESC"]]
+            });
             if(response.count > 0){
                 res.status(200).json({data:response})
             }else{
-                res.status(400).json({message:"No Data exists",data:response})    
+                res.status(400).json({message:"No User exists",data:response})    
             }
         } catch (error) {
             res.status(400).json({error:error.message})
