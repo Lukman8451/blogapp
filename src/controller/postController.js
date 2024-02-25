@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import comments from "../models/comment.js";
 import Post from "../models/post.js";
 import User from "../models/user.js";
@@ -32,7 +33,7 @@ class PostController{
     GetAllPost = async (req,res) =>{
         let page = req.query?.page
         let limit = req.query?.limit
-        
+        let keyword = req.query?.keyword
         if((page == null || page == undefined)&& (limit == null || limit == undefined )){
             page = 1
             limit = 10
@@ -42,11 +43,35 @@ class PostController{
         }
         try {
             let offset = (page - 1) * limit
+
             let attributes = ["createdAt","updatedAt"]
             let response = await Post.findAndCountAll({
+                where:{
+                    [Op.or]:{
+                        post_name:{
+                            [Op.iLike]:`%${keyword}%`
+                        },
+                        post_title:{
+                            [Op.iLike]:`%${keyword}%`
+                        },
+                        post_discription:{
+                            [Op.iLike]:`%${keyword}%`
+                        },
+                        '$user.name$':{
+                            [Op.iLike]:`%${keyword}%`
+                        },
+                        '$user.surname$':{
+                            [Op.iLike]:`%${keyword}%`
+                        },
+                        '$user.email$':{
+                            [Op.iLike]:`%${keyword}%`
+                        }
+                    }
+                },
                 include:[
                     {
                         model:User,
+                        required:true,
                         attributes:{exclude:attributes}
                     },
                     {

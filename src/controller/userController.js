@@ -49,8 +49,8 @@ class UserController{
                     res.status(400).json({error:"Email dosent exists"});
                 }else{
                     if(await bcrypt.compare(data.password,response.password)){
-                        let token = jwt.sign({id:response.id,email:response.email},process.env.JWT_SECRET,{expiresIn:"1m"});
-                        let refreshToken = jwt.sign({id:response.id},process.env.JWT_SECRET,{expiresIn:"5m"});
+                        let token = jwt.sign({id:response.id,email:response.email},process.env.JWT_SECRET,{expiresIn:"1d"});
+                        let refreshToken = jwt.sign({id:response.id},process.env.JWT_SECRET,{expiresIn:"5d"});
                         if(token != null && refreshToken!= null){
                             res.cookie("AccessToken",token);
                             res.cookie("RefreshToken",refreshToken)
