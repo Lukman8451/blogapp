@@ -6,8 +6,8 @@ import UserRouter from './src/routes/user.js';
 import PostRouter from './src/routes/post.js';
 import CommentRouter from './src/routes/comment.js';
 import setAssociations from './src/models/associations.js';
-//import UserroleRouter from './src/routes/userrole.js';
-//import UserpermissionRouter from './src/routes/userpermission.js';
+// import UserroleRouter from './src/routes/userrole.js';
+ import UserpermissionRouter from './src/routes/userpermission.js';
 
 
 setAssociations()
@@ -22,8 +22,8 @@ app.use(cors())
 app.use("/api/auth",UserRouter)
 app.use("/api/auth",PostRouter)
 app.use("/api/auth",CommentRouter)
-//app.use("/api/auth",UserpermissionRouterRouter)
-//app.use("/api/auth",UserroleRouter)
+app.use("/api/auth",UserpermissionRouter)
+// app.use("/api/auth",UserroleRouter)
 
 
 

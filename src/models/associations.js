@@ -1,8 +1,8 @@
 import users from './user.js'
 import posts from './post.js'
 import comments from './comment.js';
-import Userpermission from './permission.js';
-import Userrole from './UserRole.js';
+// import Userpermission from './permission.js';
+// import Userrole from './UserRole.js';
 
 let setAssociations = async() => {
     

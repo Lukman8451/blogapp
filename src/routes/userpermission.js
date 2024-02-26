@@ -1,15 +1,15 @@
-// import permission from "../controller/permissionController.js";
+import permission from "../controller/permissionController.js";
 
-// import { Router } from "express";
-// import isAuthicated from "../middlewares/jwtAuthentication.js";
-
-
-
-// const userpermissionController = new permission()
-// const UserpermissionRouter = Router()
+import { Router } from "express";
+import isAuthicated from "../middlewares/jwtAuthentication.js";
 
 
 
-// UserpermissionRouter.post("/createUserpermission",isAuthicated,userpermissionController.CreateUser);
+const userpermissionController = new permission()
+const UserpermissionRouter = Router()
 
-// export default UserpermissionRouter
+
+
+UserpermissionRouter.post("/createUserpermission/:id",isAuthicated,userpermissionController.CreatePermission);
+
+export default UserpermissionRouter
