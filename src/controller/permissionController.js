@@ -47,23 +47,19 @@ class permission{
     }
 
     GetAllpermissions = async (req,res) =>{
-        let userData = req.body
-        if(userData == null || userData == undefined){
-            res.status(400).json({error:"User permission is required"});
-        }else{
-            try {
-                let response = await permissions.create(userData)
-                if(response){
-                    res.status(201).json({message:"Permission Created Successfully",data:response})
-                }else{
-                    res.status(201).json({error:"Something went wrong please try again"})
-                }
-            } catch (error) {
-                console.log(error)
-                res.status(200).json({error:error.message});
+        try {
+            let response = await permissions.findAndCountAll();
+            if(response.count > 0){
+                res.status(200).json({data:response})
+                res.status(200).json({})
+            }else{
+                res.status(400).json({message:"No Permission  exists",data:response})    
             }
-        } 
+        } catch (error) {
+            res.status(400).json({error:error.message})
+        }
     }
+    
 
     GetPermissionById = async (req,res) =>{
         let userData = req.body
