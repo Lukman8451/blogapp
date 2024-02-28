@@ -49,10 +49,12 @@ class permission{
     GetAllpermissions = async (req,res) =>{
         try {
             let response = await permissions.findAndCountAll();
-            if(response.count > 0){
+            if(response.count > 0)
+            {
                 res.status(200).json({data:response})
-                res.status(200).json({})
-            }else{
+            }
+            else
+            {
                 res.status(400).json({message:"No Permission  exists",data:response})    
             }
         } catch (error) {
