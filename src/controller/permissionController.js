@@ -1,4 +1,7 @@
+import { Model } from "sequelize";
 import permissions from "../models/permission.js";
+import Role from "../models/role.js";
+import User from "../models/user.js";
 
 class permission{
 
@@ -21,7 +24,7 @@ class permission{
             }
         } 
     }
-
+    
     UpdatePermission = async (req,res) =>{
         let userData = req.body
         let id = req.params.id
@@ -48,7 +51,9 @@ class permission{
 
     GetAllpermissions = async (req,res) =>{
         try {
-            let response = await permissions.findAndCountAll();
+            let response = await permissions.findAndCountAll({
+                include:[{model:Role,include:[{model:User}]}]
+            });
             if(response.count > 0)
             {
                 res.status(200).json({data:response})
@@ -69,7 +74,9 @@ class permission{
             res.status(400).json({erorr:"please permission id"})
         }else{
             try {
-                let response = await permissions.findByPk(id);
+                let response = await permissions.findByPk(id,{
+                    include:[{model:Role,include:[{model:User}]}]
+                });
                 if(response == null){
                     res.status(200).json({message:"No Data exists",data:response})
                 }else{
@@ -82,23 +89,23 @@ class permission{
     }
 
     DeletePermission = async (req,res) =>{
-        let userData = req.body
-        if(userData == null || userData == undefined){
-            res.status(400).json({error:"User permission is required"});
+        let id = req.params.id
+        if(id == null || id == undefined){
+            res.status(400).json({erorr:"please provide  permission id"})
         }else{
             try {
-                let response = await permissions.destroy(userData)
-                if(response){
-                    res.status(201).json({message:"Permission Created Successfully",data:response})
+                let response = await permissions.destroy({where:{id:id}});
+                if(response > 0){
+                    res.status(200).json({data:response,message:"permission  Deleted Successfully"})
                 }else{
-                    res.status(201).json({error:"Something went wrong please try again"})
+                    res.status(400).json({message:"No Data exists",data:response})    
                 }
             } catch (error) {
-                console.log(error)
-                res.status(200).json({error:error.message});
+                res.status(400).json({error:error.message})
             }
+        }
         } 
-    }
+    
 
     BulkDeletePermissions = async (req,res) =>{
         let userData = req.body

@@ -1,4 +1,4 @@
-import { Op } from "sequelize";
+import { Op, where } from "sequelize";
 import User from "../models/user.js";
 import Post from "../models/post.js";
 import bcrypt from 'bcryptjs'
@@ -170,19 +170,38 @@ class UserController{
     }
 
     BulkDeleteUsers = async (req,res) =>{
-        try {
-            let response = await User.truncate();
-            if(response == 0)
-            {
-                res.status(200).json({data:response,message: "All user Deleted Sucessfully"});
-            }
-            else{
-                res.status(200).json({message:"No data exists", data:response})
-            }
-        } catch (error) {
-            res.status(400).json({error:error.message})
-            
+     
+        // not working
+
+        let {ids}=req.body;
+        console.log(ids)
+        let ids1 = ids.length
+        if(ids1 == 0)
+        {
+            res.status(400).json({error:"require ids to delete data"})
         }
+        else
+        {
+            try 
+            {
+                let response = await User.destroy({where : {id:ids}});
+                if(response == null || response == undefined || response == 0)
+                {
+                    res.status(400).json({error:"cannot delete try again"});
+                }
+                else
+                {
+                    res.status(200).json({message : "deleted sucessfully"});
+                }
+            } 
+            catch (error) 
+            {
+                res.status(400).json({error:error.message});
+            }
+        }
+
+
+    
         
     }
 

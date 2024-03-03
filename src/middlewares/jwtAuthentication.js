@@ -3,11 +3,11 @@ import User from "../models/user.js"
 
 let isAuthicated = async ( req , res , next ) =>{
     let header = req.headers.authorization
-    console.log(header)
     if(header == null || header == undefined){
         res.status(400).json({error:"Please Login"});
     }else{
-        //header = ["Bearer skjfnskjfnndfgindfkjgdfgoidfjjkdgdkjbndiu"]
+        try {
+            //header = ["Bearer skjfnskjfnndfgindfkjgdfgoidfjjkdgdkjbndiu"]
         let [authheader,token] = header.split(" ");
         if(token == null || token == undefined){
             res.status(401).json({error:"UnAuthorized Access"})
@@ -20,6 +20,9 @@ let isAuthicated = async ( req , res , next ) =>{
                 req.user = user.id
                 next()
             }
+        }
+        } catch (error) {
+            res.status(401).json({error:error.message});   
         }
     }
 }

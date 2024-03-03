@@ -17,4 +17,6 @@ UserpermissionRouter.put("/updatepermission/:id",isAuthicated,userpermissionCont
 UserpermissionRouter.get("/GetAllPermission",isAuthicated,userpermissionController.GetAllpermissions);
 UserpermissionRouter.get("/getpermissionbyid/:id",isAuthicated,userpermissionController.GetPermissionById)
 
+UserpermissionRouter.delete("/deletepermission/:id",isAuthicated,userpermissionController.DeletePermission)
+
 export default UserpermissionRouter
