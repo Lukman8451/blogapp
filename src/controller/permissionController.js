@@ -1,4 +1,3 @@
-import { Model } from "sequelize";
 import permissions from "../models/permission.js";
 import Role from "../models/role.js";
 import User from "../models/user.js";
@@ -69,13 +68,28 @@ class permission{
     
 
     GetPermissionById = async (req,res) =>{
-        let id = req.params.id
+        let page = req.query?.page
+        let limit = req.query?.limit
+        let keyword = req.query?.keyword
+        keyword = keyword == null || keyword == undefined ? "":keyword
+        if((page == null || page == undefined)&& (limit == null || limit == undefined )){
+            page = 1
+            limit = 10
+        }else if(page == undefined || limit == undefined){
+            page = 1
+            limit = 10
+        }
         if(id == null || id == undefined){
             res.status(400).json({erorr:"please permission id"})
         }else{
             try {
+                let offset = (page - 1) * limit
                 let response = await permissions.findByPk(id,{
-                    include:[{model:Role,include:[{model:User}]}]
+                    include:[{model:Role,include:[{model:User}]}],
+                    include:[{model:permission},{model:User}],
+                    offset:offset,
+                    limit:limit,
+                    order:[["updatedAt","DESC"]]
                 });
                 if(response == null){
                     res.status(200).json({message:"No Data exists",data:response})
@@ -125,10 +139,5 @@ class permission{
             }
         } 
     }
-
-    
-
-
-
 }
 export default permission

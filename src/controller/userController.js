@@ -13,7 +13,7 @@ class UserController{
     
     CreateUser = async (req,res) =>{
         let userData = req.body
-        if((userData.email == null || userData.email == undefined )&& (userData.password == null || userData.password == undefined)){
+        if((userData.email == null || userData.email == undefined ) && (userData.password == null || userData.password == undefined)){
             res.status(400).json({error:"Please provide Email or password"});
         }else{
             try {
