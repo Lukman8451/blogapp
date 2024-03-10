@@ -16,6 +16,7 @@ RoleRouter.put("/updateRole/:id",RoleController.UpdateRole)
 
 RoleRouter.get("/GetAllRoles",RoleController.GetAllRoles);
 RoleRouter.get("/getRolebyid/:id",RoleController.GetRoleById)
+RoleRouter.get("/getRoleByUserId/:id",RoleController.GetRoleByUserId)
 
 RoleRouter.delete("/deleteRole/:id",RoleController.DeleteRole)
 

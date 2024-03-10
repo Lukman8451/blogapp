@@ -106,6 +106,23 @@ class RoleController{
         }
     }
 
+    GetRoleByUserId = async (req,res) => {
+        if(id == null || id == undefined || id == ":id"){
+            res.status(400).json({erorr:"please provide id"})
+        }else{
+            try {
+                let response = await Role.findOne({where:{userId:id},include:[{model:permission,}]});
+                if(response == null){
+                    res.status(200).json({message:"No Data exists",data:response})
+                }else{
+                    res.status(200).json({data:response})
+                }
+            } catch (error) {
+                res.status(400).json({error:error.message})
+            }
+        }
+    }
+
     DeleteRole = async (req,res) => {
         let id = req.params.id
         if(id == null || id == undefined){

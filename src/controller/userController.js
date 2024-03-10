@@ -3,6 +3,8 @@ import User from "../models/user.js";
 import Post from "../models/post.js";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import Role from "../models/role.js";
+import permission from "./permissionController.js";
 class UserController{
 
 
@@ -117,8 +119,8 @@ class UserController{
                        
                     }
                 },
-              
-                attributes:{exclude:["userId","createdAt"]},
+                include:[{model:Role }],
+                //attributes:{exclude:["userId","createdAt"]},
                 offset:offset,
                 limit:limit,
                 order:[["updatedAt","DESC"]]
@@ -139,7 +141,7 @@ class UserController{
             res.status(400).json({erorr:"please provide id"})
         }else{
             try {
-                let response = await User.findByPk(id);
+                let response = await User.findByPk(id,{include:[{model:Role}]});
                 if(response == null){
                     res.status(200).json({message:"No Data exists",data:response})
                 }else{
@@ -170,32 +172,40 @@ class UserController{
     }
 
     BulkDeleteUsers = async (req,res) =>{
-     
-        // not working
-
-        let {ids}=req.body;
-        console.log(ids)
-        let ids1 = ids.length
-        if(ids1 == 0)
-        {
+        let {ids} = req.body;
+        let success = []
+        let error = []
+        if(ids == null || ids == undefined){
             res.status(400).json({error:"require ids to delete data"})
         }
-        else
-        {
+        else{
             try 
             {
-                let response = await User.destroy({where : {id:ids}});
-                if(response == null || response == undefined || response == 0)
-                {
-                    res.status(400).json({error:"cannot delete try again"});
+                for(let user_id of ids){
+                    let user = await User.findByPk(user_id);    
+                    if(user == null || user == undefined){
+                        error.push(`${user_id} user dosent exist`)
+                    }else{
+                        let response = await User.destroy({where : {id:user_id}});
+                        if(response > 0){
+                            success.push(`${user.name} deleted Successfully`)
+                        }
+                        else{
+                            error.push(`${user.name} Cannot delete please try again`)
+                        }
+                    }
                 }
-                else
-                {
-                    res.status(200).json({message : "deleted sucessfully"});
+                if(error.length > 0 && success.length == 0){
+                    res.status(400).json({error:error})
+                }else if(error.length > 0 && success.length > 0){
+                    res.status(200).json({error:error,success:success})
+                }else{
+                    res.status(200).json({data:success})
                 }
             } 
             catch (error) 
             {
+                console.log(error)
                 res.status(400).json({error:error.message});
             }
         }
