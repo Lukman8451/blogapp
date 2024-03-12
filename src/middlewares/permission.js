@@ -7,7 +7,8 @@ let PermissionAuthorization = async(req,res,next) => {
     let header = req.headers.authorization
     let type = req.headers.type
 
-    if(header == null  || header == undefined){
+    if(header == null  || header == undefined)
+    {
         res.status().json({error:"Please login"});
     }else{
         let [authheader, token] = header.split(" ");
@@ -39,14 +40,14 @@ let PermissionAuthorization = async(req,res,next) => {
                             if(user.permission.delete == true){
                                 next()
                             }else{
-                                res.status(401).json({error:"You not authirzed for Creating any thing"})
+                                res.status(401).json({error:"You not authirzed for Remove any thing"})
                             }
                             break
                         case "view":
                             if(user.permission.view == true){
                                 next()
                             }else{
-                                res.status(401).json({error:"You not authirzed for Creating any thing"})
+                                res.status(401).json({error:"You not authirzed for View any thing"})
                             }
                             break
                         default:
