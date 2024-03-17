@@ -2,6 +2,7 @@ import Role from "../controller/rolesController.js";
 
 import { Router } from "express";
 import isAuthicated from "../middlewares/jwtAuthentication.js";
+import PermissionAuthorization from "../middlewares/permission.js";
 
 
 
@@ -10,14 +11,14 @@ const RoleRouter = Router()
 
 
 
-RoleRouter.post("/createRole",RoleController.CreateRole);
+RoleRouter.post("/createRole",isAuthicated,PermissionAuthorization,RoleController.CreateRole);
 
-RoleRouter.put("/updateRole/:id",RoleController.UpdateRole)
+RoleRouter.put("/updateRole/:id",isAuthicated,PermissionAuthorization,RoleController.UpdateRole)
 
-RoleRouter.get("/GetAllRoles",RoleController.GetAllRoles);
-RoleRouter.get("/getRolebyid/:id",RoleController.GetRoleById)
-RoleRouter.get("/getRoleByUserId/:id",RoleController.GetRoleByUserId)
+RoleRouter.get("/GetAllRoles",isAuthicated,PermissionAuthorization,RoleController.GetAllRoles);
+RoleRouter.get("/getRolebyid/:id",isAuthicated,PermissionAuthorization,RoleController.GetRoleById)
+RoleRouter.get("/getRoleByUserId/:id",isAuthicated,PermissionAuthorization,RoleController.GetRoleByUserId)
 
-RoleRouter.delete("/deleteRole/:id",RoleController.DeleteRole)
+RoleRouter.delete("/deleteRole/:id",isAuthicated,PermissionAuthorization,RoleController.DeleteRole)
 
 export default RoleRouter
