@@ -1,0 +1,1188 @@
+{
+	"info": {
+		"_postman_id": "75d571cc-798f-43ff-9aee-f2a887bf9426",
+		"name": "Blog Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32963058"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Arbaz\",\r\n    \"surname\":\"kunni\",\r\n    \"email\":\"lukmanr50@gmail.com\",\r\n    \"password\":\"lukman123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/createUser",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"createUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3Y2YzMGNhLTYzZmItNGE4Yi05NTJmLTYzZDk4ZWUwNzdmYyIsImVtYWlsIjoibHVrbWFuNTAwQGdtYWlsLmNvbSIsImlhdCI6MTcxMDA1MDE3MCwiZXhwIjoxNzEwMTM2NTcwfQ.OluvmyutxlUPzFW73C0spRKPBqtBGfjArNYTffwuOyg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "type",
+								"value": "view",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/getAllUsers?page=1&limit=10&keyword=",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"getAllUsers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcxMDA0OTM2NCwiZXhwIjoxNzEwMTM1NzY0fQ.XcAqANUF2qaTq6czuBhfIeIOTloHyQSLUbr1y3pmaFQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/getUserById/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"getUserById",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "27cf30ca-63fb-4a8b-952f-63d98ee077fc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwODg1Mjk5NCwiZXhwIjoxNzA4OTM5Mzk0fQ.tI6JehOnRjpnoMyFbwyOIXLl4PP-0RMsB4Rrq0wXXG",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"lukman500@gmail.com\",\r\n    \"password\":\"lukman123\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/loginUser",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"loginUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout USer",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"arbazkhan344@gmail.com\",\r\n    \"password\":\"arbaz123\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/logoutUser/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"logoutUser",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "850a3d95-c790-4a2d-95f3-dc066b7294c9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/deleteUserById/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"deleteUserById",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "b0a5e00a-0bf8-457b-92e7-3c3b532341d7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Lukman3\",\r\n    \"surname\":\"kunni\",\r\n    \"email\":\"lukmankunni3@gmail.com\",\r\n    \"password\":\"lukman123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/updateUser/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"updateUser",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "75f8d6bd-64d5-47e1-8d63-fa7b96f3f467"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3Y2YzMGNhLTYzZmItNGE4Yi05NTJmLTYzZDk4ZWUwNzdmYyIsImVtYWlsIjoibHVrbWFuNTAwQGdtYWlsLmNvbSIsImlhdCI6MTcxMDA1MDE3MCwiZXhwIjoxNzEwMTM2NTcwfQ.OluvmyutxlUPzFW73C0spRKPBqtBGfjArNYTffwuOyg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ids\":[\"fa2765cc-d2bf-465b-990e-93b1649ef5f9\",\"90ca5c85-1647-4c2f-9794-18c36f2388f3\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/auth/deleteallusers",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"deleteallusers"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "e048145a-2755-4ba6-afe3-ec8d49531759",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "27cf30ca-63fb-4a8b-952f-63d98ee077fc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "Create Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwODg0NDU2NywiZXhwIjoxNzA4OTMwOTY3fQ.3_pOk9Ul7vWvhCFIDhLevcfCGt7XutICVdT_ZQy1Hgg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_img\": \"Data\",\r\n    \"post_name\": \"Lukman Third Post\",\r\n    \"post_title\": \"hello world\",\r\n    \"post_discription\": \"this is my first post\",\r\n    \"userId\":\"e048145a-2755-4ba6-afe3-ec8d49531759\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/post/createpost",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"createpost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1MGEzZDk1LWM3OTAtNGEyZC05NWYzLWRjMDY2YjcyOTRjOSIsImVtYWlsIjoiYXJiYXpraGFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwODg0MzU1OSwiZXhwIjoxNzA4OTI5OTU5fQ.CyavDscVJS9sefycg5fIecYsAgtzSC3lB0olAdbBjxQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/post/getallpost?page=1&limit=10&keyword=khan",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"getallpost"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "khan"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Post By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/post/getpostbyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"getpostbyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f8b707ff-d38f-4082-8c0a-8e3da24f6df1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/post/deletepostbyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"deletepostbyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eb1c66d2-4269-40b2-985a-0bfa7fb25ee7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_img\": \"abcd\",\r\n    \"post_name\": \"My First Post\",\r\n    \"post_title\": \"begning of new era\",\r\n    \"post_discription\": \"My first post is new era\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/post/updatepost/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"updatepost",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "037cd978-40b6-42c0-ac08-92526a369f90"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/post/deleteallpost",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"deleteallpost"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Create Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTQ0MjI1MywiZXhwIjoxNzA5NTI4NjUzfQ.703xdI_6p0i7cCbx1Atax73fordcQIe-WspvCZGumYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Create Admin\",\r\n    \"permissionId\":\"038794e6-2329-467b-8c2a-cde900f01699\",\r\n    \"userId\":\"27cf30ca-63fb-4a8b-952f-63d98ee077fc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/role/createRole",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"createRole"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTQ0MjI1MywiZXhwIjoxNzA5NTI4NjUzfQ.703xdI_6p0i7cCbx1Atax73fordcQIe-WspvCZGumYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/role/GetAllRoles?page=1&limit=10",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"GetAllRoles"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "create",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Role By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTQ0MjI1MywiZXhwIjoxNzA5NTI4NjUzfQ.703xdI_6p0i7cCbx1Atax73fordcQIe-WspvCZGumYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/role/getRolebyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"getRolebyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "78a5d512-53e6-4b53-8faf-6d2e5cf88b0a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/post/deletepostbyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"deletepostbyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eb1c66d2-4269-40b2-985a-0bfa7fb25ee7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post_img\": \"abcd\",\r\n    \"post_name\": \"My First Post\",\r\n    \"post_title\": \"begning of new era\",\r\n    \"post_discription\": \"My first post is new era\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/post/updatepost/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"updatepost",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "037cd978-40b6-42c0-ac08-92526a369f90"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Role",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/post/deleteallpost",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"post",
+								"deleteallpost"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetRoleByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/role/getRoleByUserId/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"role",
+								"getRoleByUserId",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "27cf30ca-63fb-4a8b-952f-63d98ee077fc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postId\": \"43c5a75b-d7ed-40dd-9637-dbf87707df22\",\r\n    \"user_id\": \"e6c4b3d5-a52e-45db-a447-1c1b9d146e66\",\r\n    \"comment_discp\": \"this is my first comment on first post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/comment/createcomment",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comment",
+								"createcomment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/comment/getallcomment",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comment",
+								"getallcomment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/comment/getcommentbyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comment",
+								"getcommentbyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eb1c66d2-4269-40b2-985a-0bfa7fb25ee7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/comment/deletecommentbyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comment",
+								"deletecommentbyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "eb1c66d2-4269-40b2-985a-0bfa7fb25ee7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/comment/updatecomment/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comment",
+								"updatecomment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:5000/api/comment/deleteallcomment",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"comment",
+								"deleteallcomment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "Create Permission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTQ0MjI1MywiZXhwIjoxNzA5NTI4NjUzfQ.703xdI_6p0i7cCbx1Atax73fordcQIe-WspvCZGumYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"create\":\"true\",\r\n    \"update\": \"false\",\r\n    \"view\":\"true\",\r\n    \"delete\":\"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/permission/createUserpermission/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"permission",
+								"createUserpermission",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "e048145a-2755-4ba6-afe3-ec8d49531759\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Permission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTEzMjc2OSwiZXhwIjoxNzA5MjE5MTY5fQ.4e0RmnLPb4JHEgFvZ1XhX2mqHxKvdjfjybikwHUBKHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"create\":\"false\",\r\n    \"update\": \"false\",\r\n    \"view\":\"true\",\r\n    \"delete\":\"false\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/permission/updatepermission/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"permission",
+								"updatepermission",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2a2b20c4-da8a-4333-ab96-e59e484dd9b5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Permission",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTQ0MjI1MywiZXhwIjoxNzA5NTI4NjUzfQ.703xdI_6p0i7cCbx1Atax73fordcQIe-WspvCZGumYg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/permission/GetAllPermission",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"permission",
+								"GetAllPermission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Permission By id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTEzMjc2OSwiZXhwIjoxNzA5MjE5MTY5fQ.4e0RmnLPb4JHEgFvZ1XhX2mqHxKvdjfjybikwHUBKHs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/permission/getpermissionbyid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"permission",
+								"getpermissionbyid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2a2b20c4-da8a-4333-ab96-e59e484dd9b5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Permission By id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUwNDgxNDVhLTI3NTUtNGJhNi1hZmUzLWVjOGQ0OTUzMTc1OSIsImVtYWlsIjoibHVrbWFuMzQ0QGdtYWlsLmNvbSIsImlhdCI6MTcwOTE5NTE0NSwiZXhwIjoxNzA5MjgxNTQ1fQ.y4kooI1IifgDbrRnkDZYFYNkVZHmQCcl8IbqGpWhIEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/permission/deletepermission/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"permission",
+								"deletepermission",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "023239df-a306-40d2-b5f2-4e67f4d04164"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
